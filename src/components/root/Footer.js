@@ -1,11 +1,14 @@
+import { NavItem } from './NavItem'
 import style from './root.module.css'
 
 export const Footer = ({arts}) => {
-    return (
-        <div className={style.foot}>
-            {arts.map(cat=>{
-                return <p key={cat}>{cat}</p>
-            })}
-        </div>
-    )
+    if(arts){
+        return (
+            <div className={style.foot}>
+                {arts.map(art=>{
+                    return <NavItem key={art} art={art}/>
+                })}
+            </div>
+        )
+    }
 }

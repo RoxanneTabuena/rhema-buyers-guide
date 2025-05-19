@@ -81,12 +81,12 @@ textarea:not([rows]) {
 /* general typography */
 @font-face {
   font-family: 'Titles';
-  src: url('./fonts/PastiOblique-7B0wK.otf');
+  src: url('./assets/PastiOblique-7B0wK.otf');
 }
 
 @font-face {
   font-family: 'Highlights';
-  src: url('./fonts/PropagandaSightPersonalUse-XY4K.ttf');
+  src: url('./assets/PropagandaSightPersonalUse-XY4K.ttf');
 }
 
 .title {

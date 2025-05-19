@@ -15,6 +15,10 @@ createBrowserRouter( createRoutesFromElements(
     path="/" 
     element={<Root/>}>
         <Route
+          path='intro'
+          element={<Article art={'intro'}/>}
+        />
+        <Route
           path='mission'
           element={<Article art={'mission'}/>}
         />

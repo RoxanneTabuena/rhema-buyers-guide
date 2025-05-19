@@ -19,8 +19,8 @@ export const titleSequence = {
     'logos' : `Logo Upgrades`,
     'graphics': `Graphic Style Options`,
     'scope' : `Project Scope`,
-    'timeline' : `Project Timeline`,
     'maintenance': `Site Maintenance`,
+    'timeline' : `Project Timeline`,
 }
 
 export const articles = {
