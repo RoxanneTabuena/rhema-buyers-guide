@@ -1,24 +1,61 @@
-import logo from './logo.svg';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import { Root }from "./components/root/Root"
+import { Article } from './components/Article/Article';
+import { Research } from './components/Research/Research';
+import { Map } from './components/Map/Map';
+import { Timeline } from './components/Timeline/Timeline';
+
 import './App.css';
+
+
+const router = 
+
+createBrowserRouter( createRoutesFromElements(
+  <Route 
+    path="/" 
+    element={<Root/>}>
+        <Route
+          path='mission'
+          element={<Article art={'mission'}/>}
+        />
+        <Route 
+          path="market-research" 
+          element={<Research/> }/>
+        <Route 
+          path="proposal" 
+          element={<Article art={'proposal'}/> }/>
+        <Route 
+          path="map" 
+          element={<Map/> }/>
+        <Route 
+          path="inventory" 
+          element={<Article art={'inventory'}/> }/>
+        <Route 
+          path="themes" 
+          element={<Article art={'themes'}/> }/>
+        <Route 
+          path="logos" 
+          element={<Article art={'logos'}/> }/>
+        <Route 
+          path="graphics" 
+          element={<Article art={'graphics'}/> }/>
+        <Route 
+          path="scope" 
+          element={<Article art={'scope'}/> }/>
+        <Route 
+          path="maintenance" 
+          element={<Article art={'maintenance'}/> }/>
+        <Route 
+          path="timeline" 
+          element={<Timeline /> }/>
+  </Route>
+))
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router}/>
+    </>
   );
 }
 
