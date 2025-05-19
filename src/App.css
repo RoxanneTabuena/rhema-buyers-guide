@@ -1,4 +1,4 @@
-
+/* css resets */
 /* Box sizing rules */
 *,
 *::before,
@@ -78,3 +78,21 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+/* general typography */
+@font-face {
+  font-family: 'Titles';
+  src: url('./fonts/PastiOblique-7B0wK.otf');
+}
+
+@font-face {
+  font-family: 'Highlights';
+  src: url('./fonts/PropagandaSightPersonalUse-XY4K.ttf');
+}
+
+.title {
+  font-family: 'Titles';
+}
+
+.highlight {
+  font-family: 'Highlight';
+}
