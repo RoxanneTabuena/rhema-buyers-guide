@@ -6,14 +6,7 @@ import style from './viewport.module.css'
 export const Viewport = ({cur}) => {
     return (
         <div className={style.viewport}>
-            <div className={style.cur}>
-                <p>main</p>
-                { cur === 'intro'? 
-                <Article art={'intro'}/>
-                : <Outlet/>
-                }
-                <p>main</p>
-            </div>
+            <Outlet />
             <Preview cur={cur}/>
         </div>
     )

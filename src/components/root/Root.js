@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { getHeadArts, getFootArts, getArtFromPath } from "../utils";
+import { getHeadArts, getFootArts, getArtFromPath, getMainHeight } from "../utils";
 import { NavItem } from "./NavItem";
 import style from './root.module.css'
 import { Viewport } from "./Viewport/Viewport";
@@ -10,7 +10,8 @@ import { Viewport } from "./Viewport/Viewport";
 export const Root = () => {
     const [ curArt, setCurArt ] = useState('intro')
     const { pathname } = useLocation()
-
+    const mainHeight = getMainHeight()
+    
     useEffect(()=>{
         if(pathname === '/'){
             setCurArt('intro')
@@ -23,7 +24,7 @@ export const Root = () => {
             <header>
                 <Header arts={getHeadArts(curArt)}/>
             </header>
-            <main>
+            <main style={{height: `${mainHeight}px`}}>
             <NavItem art={curArt}/>
             <Viewport cur={curArt}/>
             </main>
