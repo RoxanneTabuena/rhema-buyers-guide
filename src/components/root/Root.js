@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { getHeadArts, getFootArts, getArtFromPath, getMainHeight, getArtHeight } from "../utils";
+import { 
+        getHeadArts, 
+        getFootArts, 
+        getArtFromPath, 
+        getMainHeight, 
+        getArtHeight,
+        getNextArt } from "../utils";
 import { NavItem } from "./NavItem";
 import style from './root.module.css'
 import { Viewport } from "./Viewport/Viewport";
@@ -13,6 +19,7 @@ export const Root = () => {
     const [ artHeight, setArtHeight] = useState('200px')
     const [footer, setFooter] = useState(getFootArts(curArt))
     const { pathname } = useLocation()
+    const navigate = useNavigate()
     
 // update article and footeraccording to pathname
     useEffect(()=>{
@@ -38,6 +45,10 @@ export const Root = () => {
     const handlePreviewExit = () => {
         setFooter(getFootArts(curArt))
     }
+// advance route on article complete
+    const handleAdvance = () => {
+        navigate(`/${getNextArt(curArt)}`)
+    }
     return (
         <div className={style.body}>
             <header>
@@ -50,7 +61,9 @@ export const Root = () => {
                 vpHeight={vpHeight} 
                 artHeight={artHeight}
                 handlePreviewEnter={handlePreviewEnter}
-                handlePreviewExit={handlePreviewExit}/>
+                handlePreviewExit={handlePreviewExit}
+                handleAdvance={handleAdvance}
+                />
             </main>
             <footer>
                 <Footer arts={footer}/>

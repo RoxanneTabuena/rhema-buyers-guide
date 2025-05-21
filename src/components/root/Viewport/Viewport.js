@@ -1,15 +1,28 @@
-import { Preview } from "./Preview";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { useObserver } from "../../../hooks/useObserver";
+import { Preview } from "./Preview";
 import style from './viewport.module.css'
 
 
-export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePreviewExit}) => {
-
+export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePreviewExit, handleAdvance}) => {
+    const [ref, article] = useObserver({
+        threshold: .01
+    })
+    const [reading, setReading] = useState(false)
+    useEffect(()=>{
+        if(article){
+            setReading(true)
+        }else{
+            if(reading){
+                handleAdvance()
+            }
+        }
+    },[article, reading])
     return (
         <div className={style.viewport}>
-            <div className={style.curArt} style={{minHeight: artHeight}}>
+            <div ref={ref} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
-                <span id="end"></span>
             </div>
             <Preview 
                 cur={cur} 

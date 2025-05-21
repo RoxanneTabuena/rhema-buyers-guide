@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useObserver } from '../../../hooks/useObserver'; // adjust the path if needed
 import { NavItem } from "../NavItem";
 import { titleSequence } from "../../content/articleDir";
