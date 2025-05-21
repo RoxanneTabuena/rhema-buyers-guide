@@ -27,6 +27,13 @@ export const getNextArt = (art) => {
 
 // determine element height
 
+export const getLinkHeight = () => {
+    let link = document.querySelector('.link')
+    if(!link){
+        return false
+    }
+    return `${link.offsetHeight}px`
+}
 export const getMainHeight = () => {
     let total = window.innerHeight
     let navItems = document.querySelectorAll('.link')
