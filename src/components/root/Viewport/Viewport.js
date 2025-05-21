@@ -8,7 +8,7 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
     return (
         <div className={style.viewport}>
             <div className={style.curArt} style={{minHeight: artHeight}}>
-            <Outlet />
+                <Outlet />
                 <span id="end"></span>
             </div>
             <Preview 

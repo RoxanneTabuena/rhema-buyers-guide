@@ -13,13 +13,14 @@ export const Root = () => {
     const [ artHeight, setArtHeight] = useState('200px')
     const [footer, setFooter] = useState(getFootArts(curArt))
     const { pathname } = useLocation()
-    const mainHeight = getMainHeight()
     
+// update article and footeraccording to pathname
     useEffect(()=>{
         if(pathname === '/'){
             setCurArt('intro')
         }else{
             setCurArt(getArtFromPath(pathname))
+            setFooter(getFootArts(curArt))
         }
     }, [pathname, curArt])
 // set height according to links

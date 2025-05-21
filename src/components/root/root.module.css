@@ -9,3 +9,7 @@ footer{
     position: fixed;
     bottom: 0;
 }
+
+.link{
+    width: 100%;
+}

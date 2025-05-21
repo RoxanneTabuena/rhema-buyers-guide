@@ -28,9 +28,7 @@ export const getNextArt = (art) => {
 // determine element height
 
 export const getMainHeight = () => {
-    let anchor = document.querySelector('a')
-    if(anchor){
-        let total = window.innerHeight
+    let total = window.innerHeight
     let navItems = document.querySelectorAll('.link')
     let itemHeight = Array.from(navItems)[0].offsetHeight
     return `${total-[[navItems.length-1]*itemHeight]}px`
