@@ -6,9 +6,6 @@ import { miniRouter } from "./miniRouter";
 import { getNextArt, getLinkHeight} from "../../utils";
 import style from './viewport.module.css'
 
-
-
-
 export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) => {
     const next = getNextArt(cur)
     const linkHeight = !getLinkHeight() ? '5px' : getLinkHeight()

@@ -8,7 +8,8 @@ import {
         getArtFromPath, 
         getMainHeight, 
         getArtHeight,
-        getNextArt } from "../utils";
+        getNextArt,
+        getPrevArt } from "../utils";
 import { NavItem } from "./NavItem";
 import style from './root.module.css'
 import { Viewport } from "./Viewport/Viewport";
@@ -48,6 +49,10 @@ export const Root = () => {
 // advance route on article complete
     const handleAdvance = () => {
         navigate(`/${getNextArt(curArt)}`)
+    }
+// retreat route on scroll up
+    const handleRetreat = () => {
+        navigate(`/${getPrevArt}`)
     }
     return (
         <div className={style.body}>

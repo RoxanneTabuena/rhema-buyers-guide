@@ -24,6 +24,13 @@ export const getNextArt = (art) => {
     }
     return titles[index]
 }
+export const getPrevArt = (art) => {
+    let index = titles.findIndex(article=> article === art)-1
+    if(index < 0){
+        return false
+    }
+    return titles[index]
+}
 
 // determine element height
 
