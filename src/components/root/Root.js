@@ -52,7 +52,9 @@ export const Root = () => {
     }
 // retreat route on scroll up
     const handleRetreat = () => {
-        navigate(`/${getPrevArt}`)
+        if(curArt!== 'intro'){
+            navigate(`/${getPrevArt(curArt)}`)
+        }
     }
     return (
         <div className={style.body}>
@@ -68,6 +70,7 @@ export const Root = () => {
                 handlePreviewEnter={handlePreviewEnter}
                 handlePreviewExit={handlePreviewExit}
                 handleAdvance={handleAdvance}
+                handleRetreat={handleRetreat}
                 />
             </main>
             <footer>
