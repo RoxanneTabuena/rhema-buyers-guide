@@ -27,11 +27,13 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
             <div ref={ref} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
             </div>
+            {cur !== 'timeline' &&
             <Preview 
                 cur={cur} 
                 height={vpHeight}
                 handlePreviewEnter={handlePreviewEnter}
                 handlePreviewExit={handlePreviewExit}/>
+            }
         </div>
     )
 }
