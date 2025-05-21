@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { useObserver } from "../../../hooks/useObserver";
+import { ScrollToTop } from "../../../hooks/ScrollToTop";
 import { Preview } from "./Preview";
 import style from './viewport.module.css'
 
@@ -10,6 +11,7 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
         threshold: .01
     })
     const [reading, setReading] = useState(false)
+    const top = useRef(null)
     useEffect(()=>{
         if(article){
             setReading(true)
@@ -19,8 +21,9 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
             }
         }
     },[article, reading])
+    ScrollToTop(top)
     return (
-        <div className={style.viewport}>
+        <div ref={top} className={style.viewport}>
             <div ref={ref} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
             </div>
