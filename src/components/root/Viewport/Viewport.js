@@ -1,13 +1,21 @@
 import { Preview } from "./Preview";
 import { Outlet } from "react-router-dom";
-import { Article } from "../../Article/Article";
 import style from './viewport.module.css'
 
-export const Viewport = ({cur}) => {
+
+export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePreviewExit}) => {
+
     return (
         <div className={style.viewport}>
+            <div className={style.curArt} style={{minHeight: artHeight}}>
             <Outlet />
-            <Preview cur={cur}/>
+                <span id="end"></span>
+            </div>
+            <Preview 
+                cur={cur} 
+                height={vpHeight}
+                handlePreviewEnter={handlePreviewEnter}
+                handlePreviewExit={handlePreviewExit}/>
         </div>
     )
 }

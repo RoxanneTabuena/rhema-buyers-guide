@@ -10,8 +10,8 @@ export const getHeadArts = (art) => {
 }
 
 export const getFootArts = (art) => {
-    let index = titles.findIndex(article=> article === art)+2
-    if(index > titles.length-1){
+    let index = titles.findIndex(article=> article === art)+1
+    if(index > titles.length){
         return false
     }
     return titles.slice(index)
@@ -25,12 +25,20 @@ export const getNextArt = (art) => {
     return titles[index]
 }
 
-// determine main height
+// determine element height
+
 export const getMainHeight = () => {
     let anchor = document.querySelector('a')
     if(anchor){
         let total = window.innerHeight
-        let titleHeight = anchor.offsetHeight*[titles.length-2]
-        return total-titleHeight
-    }
+    let navItems = document.querySelectorAll('.link')
+    let itemHeight = Array.from(navItems)[0].offsetHeight
+    return `${total-[[navItems.length-1]*itemHeight]}px`
+}
+
+export const getArtHeight = () => {
+    let total = window.innerHeight
+    let navItems = document.querySelectorAll('.link')
+    let itemHeight = Array.from(navItems)[0].offsetHeight
+    return `${total-[[navItems.length+1]*itemHeight]}px`
 }
