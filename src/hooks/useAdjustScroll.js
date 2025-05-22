@@ -3,9 +3,11 @@ import { useLocation } from "react-router-dom"
 
 export const useAdjustScroll = (viewportRef, endRef) => {
     const { pathname, state } =  useLocation()
-    
     useEffect(() => {
-        if(state.preserveScroll === false && viewportRef.current){
+        if(!state){
+         return
+        }
+        if(state?.preserveScroll === false && viewportRef.current){
         // scroll to top if jumping to route or entering from above
             setTimeout(() => {
             viewportRef.current?.scrollTo({ top: 0, behavior: 'instant' });
