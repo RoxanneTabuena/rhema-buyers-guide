@@ -14,14 +14,13 @@ export const Viewport = ({
     handlePreviewExit, 
     primaryArticleRef, 
     startRef, 
-    viewportRef,
-    overflowRef}) => {
+    viewportRef}) => {
     const endRef = useRef(null)
     // adjust scroll based on component entry method
     useAdjustScroll(viewportRef, endRef)
 
     return (
-        <div ref={viewportRef} className={style.viewport} onWheel={handleScroll}>
+        <div ref={viewportRef} className={style.viewport}>
             <div ref={startRef} style={{ height: '1px' }}></div>
             <div ref={primaryArticleRef} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
