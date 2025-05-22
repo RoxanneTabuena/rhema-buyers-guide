@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useObserver } from '../../hooks/useObserver'
 import { Header } from "./Header";
@@ -35,78 +35,65 @@ export const Root = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const lastScrollY = useRef(0);
-
-  // advance route at end of component
-  useEffect(()=>{
-    if(primaryArticle){
-    // start reading when main article comes into view
-        setReading(true)
-    }else{
-    // advance article if article exits view during reading
-        if(reading){
-            handleAdvance()
+    // update article and footer according to pathname
+    useEffect(()=>{
+        const nextArt = pathname === '/' ? 'intro' : getArtFromPath(pathname);
+        setCurArt(nextArt);
+        setFooter(getFootArts(nextArt));
+    }, [pathname])
+    // advance route at end of component
+    useEffect(()=>{
+        if(primaryArticle){
+        // start reading when main article comes into view
+            setReading(true)
+        }else{
+        // advance article if article exits view during reading
+            if(reading){
+                setReading(false)
+                handleAdvance()
+            }
         }
-    }
-},[primaryArticle, reading])
+    },[primaryArticle, reading])
 
-// retreat route when user scrolls past top
-    const handleScroll = (e) => {
+    // retreat route when user scrolls past top
+    const handleScroll = useCallback(() => {
         const node = viewportRef.current;
+        if (!node) return;
+
         const currentY = node.scrollTop;
         const scrollingDown = currentY > lastScrollY.current;
-      
-        if (isAtTop && !scrollingDown) {
-            setTimeout(
 
-                handleRetreat()
-            , 10)
+        if (isAtTop && !scrollingDown) {
+            handleRetreat()
         }
-      
+
         lastScrollY.current = currentY;
-      };
-    
-// update article and footer according to pathname
-    useEffect(()=>{
-        if(pathname === '/'){
-            setCurArt('intro')
-        }else{
-            setCurArt(getArtFromPath(pathname))
-            setFooter(getFootArts(curArt))
-        }
-    }, [pathname, curArt])
-// set height according to links
+    }, [isAtTop, curArt]);
+    // set height according to links
     useEffect(()=>{
         setVPHeight(getMainHeight())
         setArtHeight(getArtHeight())
     },[footer])
-    useEffect(()=>{
-        setVPHeight(getMainHeight())
-    },[footer])
-// update footer according to elements visible in the viewport
+    // update footer according to elements visible in the viewport
     const handlePreviewEnter = () => {
         setFooter(footer.slice(1))
     }
     const handlePreviewExit = () => {
         setFooter(getFootArts(curArt))
     }
-// advance route on article complete
-    const handleAdvance = () => {
-        navigate(`/${getNextArt(curArt)}`,
-        {state: {preserveScroll: false}})
-    }
-// retreat route on scroll up
-    const handleRetreat = () => {
-        let destination
-        if(curArt==='intro'){
-            return
-        }else if(curArt=== 'mission'){
-            destination = '/'
-        }else{
-            destination = `/${getPrevArt(curArt)}`
-        }
-        navigate(destination,
-        {state: {preserveScroll: true}})
-    }
+    // advance route on article complete
+    const handleAdvance = useCallback(() => {
+        console.log('advance')
+        navigate(`/${getNextArt(curArt)}`, { state: { preserveScroll: false } });
+    }, [curArt, navigate]);
+
+    // retreat route on scroll up
+    const handleRetreat = useCallback(() => {
+        console.log('retreat')
+        if (curArt === 'intro') return;
+        const destination = curArt === 'mission' ? '/' : `/${getPrevArt(curArt)}`;
+        navigate(destination, { state: { preserveScroll: true } });
+    }, [curArt, navigate]);
     return (
         <div className={style.body} onWheel={handleScroll}>
             <header>

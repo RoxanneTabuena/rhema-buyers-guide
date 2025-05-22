@@ -18,5 +18,5 @@ export const useAdjustScroll = (viewportRef, endRef) => {
                 viewportRef.current.scrollTo({ top:  endRef.current.offsetTop, behavior: 'instant' })
             }, 0);
         }
-    }, [pathname, state, viewportRef, endRef])
+    }, [pathname])
 }

@@ -32,7 +32,7 @@ export const getPrevArt = (art) => {
     return titles[index]
 }
 
-// determine element height
+// height utils
 
 export const getLinkHeight = () => {
     let link = document.querySelector('.link')
@@ -54,3 +54,4 @@ export const getArtHeight = () => {
     let itemHeight = Array.from(navItems)[0].offsetHeight
     return `${total-[[navItems.length+1]*itemHeight]}px`
 }
+
