@@ -20,7 +20,7 @@ export function useObserver(options = {}) {
     return () => {
       if (node) observer.unobserve(node);
     };
-  }, [options]);
+  }, []);
 
   return [ref, isIntersecting];
 }

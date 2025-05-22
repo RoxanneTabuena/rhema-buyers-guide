@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useObserver } from "../../../hooks/useObserver";
 import { useAdjustScroll } from "../../../hooks/useAdjustScroll";
 import { Preview } from "./Preview";
@@ -7,21 +7,25 @@ import style from './viewport.module.css'
 
 
 export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePreviewExit, handleAdvance, handleRetreat}) => {
-    const [ref, article] = useObserver({
+    const viewportRef = useRef(null);
+    // track when the main article is in view
+    const [primaryArticleRef, primaryArticle] = useObserver({
         threshold: .01
     })
+    // track when the user reaches the top of main article
+    const [startRef, isAtTop] = useObserver({
+      root: viewportRef.current,
+      threshold: 1
+    })
     const [reading, setReading] = useState(false)
-    const startRef = useRef(null)
     const endRef = useRef(null)
-    const sentinelRef = useRef(null);
-    const [isAtTop, setIsAtTop] = useState(true);
     const lastScrollY = useRef(0);
     // adjust scroll based on component entry method
-    useAdjustScroll(startRef, endRef)
+    useAdjustScroll(viewportRef, endRef)
 
     // advance route at end of component
     useEffect(()=>{
-        if(article){
+        if(primaryArticle){
         // start reading when main article comes into view
             setReading(true)
         }else{
@@ -30,7 +34,7 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
                 handleAdvance()
             }
         }
-    },[article, reading])
+    },[primaryArticle, reading])
 
     // retreat route when user scrolls past top
     const handleScroll = (e) => {
@@ -45,30 +49,10 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
         lastScrollY.current = currentY;
       };
 
-      //track when a user reaches top of component
-      useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            setIsAtTop(entry.isIntersecting);
-          },
-          {
-            root: startRef.current,
-            threshold: 1,
-          }
-        );
-      
-        if (sentinelRef.current) {
-          observer.observe(sentinelRef.current);
-        }
-      
-        return () => {
-          if (sentinelRef.current) observer.unobserve(sentinelRef.current);
-        };
-      }, []);
     return (
-        <div ref={startRef} className={style.viewport} onWheel={handleScroll}>
-            <div ref={sentinelRef} style={{ height: '1px' }}></div>
-            <div ref={ref} className={style.curArt} style={{minHeight: artHeight}}>
+        <div ref={viewportRef} className={style.viewport} onWheel={handleScroll}>
+            <div ref={startRef} style={{ height: '1px' }}></div>
+            <div ref={primaryArticleRef} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
             </div>
             {cur !== 'timeline' &&
