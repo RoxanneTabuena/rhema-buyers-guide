@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useObserver } from "../../../hooks/useObserver";
-import { ScrollToTop } from "../../../hooks/ScrollToTop";
+import { useAdjustScroll } from "../../../hooks/useAdjustScroll";
 import { Preview } from "./Preview";
 import style from './viewport.module.css'
 
@@ -11,10 +11,13 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
         threshold: .01
     })
     const [reading, setReading] = useState(false)
-    const top = useRef(null)
+    const startRef = useRef(null)
+    const endRef = useRef(null)
     const sentinelRef = useRef(null);
     const [isAtTop, setIsAtTop] = useState(true);
     const lastScrollY = useRef(0);
+    const {state} = useLocation()
+    useAdjustScroll(startRef, endRef)
     useEffect(()=>{
         if(article){
             setReading(true)
@@ -41,7 +44,7 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
             setIsAtTop(entry.isIntersecting);
           },
           {
-            root: top.current,
+            root: startRef.current,
             threshold: 1,
           }
         );
@@ -54,20 +57,20 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
           if (sentinelRef.current) observer.unobserve(sentinelRef.current);
         };
       }, []);
-      ScrollToTop(top)
     return (
-        <div ref={top} className={style.viewport} onWheel={handleScroll}>
+        <div ref={startRef} className={style.viewport} onWheel={handleScroll}>
             <div ref={sentinelRef} style={{ height: '1px' }}></div>
             <div ref={ref} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
             </div>
             {cur !== 'timeline' &&
             <Preview 
-                cur={cur} 
-                height={vpHeight}
-                handlePreviewEnter={handlePreviewEnter}
-                handlePreviewExit={handlePreviewExit}/>
-            }
+            cur={cur} 
+            height={vpHeight}
+            handlePreviewEnter={handlePreviewEnter}
+            handlePreviewExit={handlePreviewExit}/>
+          }
+          <div ref={endRef} style={{ height: '5px' }}></div>
         </div>
     )
 }
