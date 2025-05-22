@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useObserver } from '../../hooks/useObserver'
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { 
@@ -15,12 +16,51 @@ import style from './root.module.css'
 import { Viewport } from "./Viewport/Viewport";
 
 export const Root = () => {
+    const viewportRef = useRef(null);
+    // track when the main article is in view
+    const [primaryArticleRef, primaryArticle] = useObserver({
+        threshold: .01
+    })
+    // track when the user reaches the top of main article
+    const [startRef, isAtTop] = useObserver({
+        root: viewportRef.current,
+        threshold: 1
+    })
+
+    const [reading, setReading] = useState(false)
     const [ curArt, setCurArt ] = useState('intro')
     const [ vpHeight, setVPHeight] = useState('200px')
     const [ artHeight, setArtHeight] = useState('200px')
     const [footer, setFooter] = useState(getFootArts(curArt))
     const { pathname } = useLocation()
     const navigate = useNavigate()
+    const lastScrollY = useRef(0);
+
+  // advance route at end of component
+  useEffect(()=>{
+    if(primaryArticle){
+    // start reading when main article comes into view
+        setReading(true)
+    }else{
+    // advance article if article exits view during reading
+        if(reading){
+            handleAdvance()
+        }
+    }
+},[primaryArticle, reading])
+
+// retreat route when user scrolls past top
+    const handleScroll = (e) => {
+        const node = viewportRef.current;
+        const currentY = node.scrollTop;
+        const scrollingUp = currentY < lastScrollY.current;
+      
+        if (isAtTop && scrollingUp) {
+          handleRetreat()
+        }
+      
+        lastScrollY.current = currentY;
+      };
     
 // update article and footer according to pathname
     useEffect(()=>{
@@ -65,7 +105,7 @@ export const Root = () => {
         {state: {preserveScroll: true}})
     }
     return (
-        <div className={style.body}>
+        <div className={style.body} onWheel={handleScroll}>
             <header>
                 <Header arts={getHeadArts(curArt)}/>
             </header>
@@ -79,6 +119,12 @@ export const Root = () => {
                 handlePreviewExit={handlePreviewExit}
                 handleAdvance={handleAdvance}
                 handleRetreat={handleRetreat}
+                primaryArticleRef={primaryArticleRef}
+                primaryArticle={primaryArticle}
+                startRef={startRef}
+                isAtTop={isAtTop}
+                viewportRef={viewportRef}
+
                 />
             </main>
             <footer>
