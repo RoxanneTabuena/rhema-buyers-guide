@@ -19,15 +19,15 @@ export const getFootArts = (art) => {
 
 export const getNextArt = (art) => {
     let index = titles.findIndex(article=> article === art)+1
-    if(index === titles.length){
-        return false
+    if(index >= titles.length){
+        return titles[titles.length-1]
     }
     return titles[index]
 }
 export const getPrevArt = (art) => {
     let index = titles.findIndex(article=> article === art)-1
-    if(index < 0){
-        return false
+    if(index <= 0){
+        return ''
     }
     return titles[index]
 }

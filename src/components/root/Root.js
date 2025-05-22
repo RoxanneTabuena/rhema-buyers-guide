@@ -64,6 +64,7 @@ export const Root = () => {
         const scrollingDown = currentY > lastScrollY.current;
 
         if (isAtTop && !scrollingDown) {
+            
             handleRetreat()
         }
 
@@ -90,9 +91,7 @@ export const Root = () => {
     // retreat route on scroll up
     const handleRetreat = useCallback(() => {
         console.log('retreat')
-        if (curArt === 'intro') return;
-        const destination = curArt === 'mission' ? '/' : `/${getPrevArt(curArt)}`;
-        navigate(destination, { state: { preserveScroll: true } });
+        navigate(`/${getPrevArt(curArt)}`, { state: { preserveScroll: true } });
     }, [curArt, navigate]);
     return (
         <div className={style.body} onWheel={handleScroll}>
