@@ -34,6 +34,7 @@ export const Root = () => {
     const [footer, setFooter] = useState(getFootArts(curArt))
     const { pathname } = useLocation()
     const navigate = useNavigate()
+    const canNavigate = useRef(true)
     const lastScrollY = useRef(0);
     // update article and footer according to pathname
     useEffect(()=>{
@@ -64,7 +65,6 @@ export const Root = () => {
         const scrollingDown = currentY > lastScrollY.current;
 
         if (isAtTop && !scrollingDown) {
-            
             handleRetreat()
         }
 
@@ -82,16 +82,31 @@ export const Root = () => {
     const handlePreviewExit = () => {
         setFooter(getFootArts(curArt))
     }
+    // throttle actions
+    const throttle = (callback) => {
+    if (!canNavigate.current) return;
+    canNavigate.current = false;
+
+    callback();
+
+    setTimeout(() => {
+      canNavigate.current = true;
+    }, 200); // 1 second throttle
+  };
     // advance route on article complete
     const handleAdvance = useCallback(() => {
-        console.log('advance')
-        navigate(`/${getNextArt(curArt)}`, { state: { preserveScroll: false } });
+        throttle(()=>{
+            console.log('advance')
+            navigate(`/${getNextArt(curArt)}`, { state: { preserveScroll: false } });
+        })
     }, [curArt, navigate]);
 
     // retreat route on scroll up
     const handleRetreat = useCallback(() => {
-        console.log('retreat')
-        navigate(`/${getPrevArt(curArt)}`, { state: { preserveScroll: true } });
+        throttle(()=>{
+            console.log('retreat')
+            navigate(`/${getPrevArt(curArt)}`, { state: { preserveScroll: true } });
+        })
     }, [curArt, navigate]);
     return (
         <div className={style.body} onWheel={handleScroll}>
