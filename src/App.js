@@ -15,7 +15,7 @@ createBrowserRouter( createRoutesFromElements(
     path="/" 
     element={<Root/>}>
         <Route
-          path='intro'
+          index
           element={<Article art={'intro'}/>}
         />
         <Route

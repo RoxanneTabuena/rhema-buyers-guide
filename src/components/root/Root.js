@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { 
@@ -22,7 +22,7 @@ export const Root = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     
-// update article and footeraccording to pathname
+// update article and footer according to pathname
     useEffect(()=>{
         if(pathname === '/'){
             setCurArt('intro')
@@ -48,13 +48,22 @@ export const Root = () => {
     }
 // advance route on article complete
     const handleAdvance = () => {
-        navigate(`/${getNextArt(curArt)}`)
+        navigate(`/${getNextArt(curArt)}`,
+        {state: {preserveScroll: false}})
     }
 // retreat route on scroll up
     const handleRetreat = () => {
-        if(curArt!== 'intro'){
-            navigate(`/${getPrevArt(curArt)}`)
+        let destination
+        if(curArt==='intro'){
+            return
         }
+        else if(curArt=== 'mission'){
+            destination = '/'
+        }else{
+            destination = `/${getPrevArt(curArt)}`
+        }
+        navigate(destination,
+        {state: {preserveScroll: true}})
     }
     return (
         <div className={style.body}>
