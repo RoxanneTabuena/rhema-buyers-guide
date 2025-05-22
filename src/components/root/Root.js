@@ -53,10 +53,13 @@ export const Root = () => {
     const handleScroll = (e) => {
         const node = viewportRef.current;
         const currentY = node.scrollTop;
-        const scrollingUp = currentY < lastScrollY.current;
+        const scrollingDown = currentY > lastScrollY.current;
       
-        if (isAtTop && scrollingUp) {
-          handleRetreat()
+        if (isAtTop && !scrollingDown) {
+            setTimeout(
+
+                handleRetreat()
+            , 10)
         }
       
         lastScrollY.current = currentY;
