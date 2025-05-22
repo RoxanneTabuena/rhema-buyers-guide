@@ -16,17 +16,23 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
     const sentinelRef = useRef(null);
     const [isAtTop, setIsAtTop] = useState(true);
     const lastScrollY = useRef(0);
-    const {state} = useLocation()
+    // adjust scroll based on component entry method
     useAdjustScroll(startRef, endRef)
+
+    // advance route at end of component
     useEffect(()=>{
         if(article){
+        // start reading when main article comes into view
             setReading(true)
         }else{
+        // advance article if article exits view during reading
             if(reading){
                 handleAdvance()
             }
         }
     },[article, reading])
+
+    // retreat route when user scrolls past top
     const handleScroll = (e) => {
         const node = e.currentTarget;
         const currentY = node.scrollTop;
@@ -38,6 +44,8 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
       
         lastScrollY.current = currentY;
       };
+
+      //track when a user reaches top of component
       useEffect(() => {
         const observer = new IntersectionObserver(
           ([entry]) => {
@@ -70,7 +78,7 @@ export const Viewport = ({cur,artHeight, vpHeight, handlePreviewEnter, handlePre
             handlePreviewEnter={handlePreviewEnter}
             handlePreviewExit={handlePreviewExit}/>
           }
-          <div ref={endRef} style={{ height: '5px' }}></div>
+          <div ref={endRef} style={{ height: '1px' }}></div>
         </div>
     )
 }

@@ -56,8 +56,7 @@ export const Root = () => {
         let destination
         if(curArt==='intro'){
             return
-        }
-        else if(curArt=== 'mission'){
+        }else if(curArt=== 'mission'){
             destination = '/'
         }else{
             destination = `/${getPrevArt(curArt)}`
