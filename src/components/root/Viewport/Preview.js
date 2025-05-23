@@ -4,7 +4,7 @@ import { NavItem } from "../NavItem";
 import { titleSequence } from "../../content/articleDir";
 import { miniRouter } from "./miniRouter";
 import { getNextArt, getLinkHeight} from "../../utils";
-import style from './viewport.module.css'
+import style from '../root.module.css'
 
 export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) => {
     const next = getNextArt(cur)
@@ -24,7 +24,7 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
     const t = (
 
         <div ref={previewRef} className={style.preview} style={{minHeight: height}}>
-            <NavItem art={next}>
+            <NavItem art={next} heightX={style.l}>
             <h2>{titleSequence[next]}</h2>
             </NavItem>
             {miniRouter[next]}

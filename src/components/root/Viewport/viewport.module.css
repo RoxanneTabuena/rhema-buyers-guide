@@ -1,9 +1,0 @@
-.viewport {
-    height: 100%;
-    overflow: scroll;
-    transition: 'height 1s ease-in-out'
-}
-
-.viewport>*{
-    height: 100%;
-}

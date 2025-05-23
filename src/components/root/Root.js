@@ -77,7 +77,7 @@ export const Root = () => {
                 <Header arts={getHeadArts(curArt)}/>
             </header>
             <main style={{height: vpHeight}}>
-            <NavItem art={curArt}/>
+            <NavItem art={curArt} heightX={style.l}/>
             <Viewport
                 cur={curArt} 
                 vpHeight={vpHeight} 

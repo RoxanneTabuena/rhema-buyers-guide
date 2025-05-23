@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { useAdjustScroll } from "../../../hooks/useAdjustScroll";
 import { Preview } from "./Preview";
-import style from './viewport.module.css'
+import style from '../root.module.css'
 
 
 export const Viewport = ({
