@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { Outlet } from "react-router-dom";
-import { useObserver } from "../../../hooks/useObserver";
 import { useAdjustScroll } from "../../../hooks/useAdjustScroll";
 import { Preview } from "./Preview";
 import style from './viewport.module.css'
