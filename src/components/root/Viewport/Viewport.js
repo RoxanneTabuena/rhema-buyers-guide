@@ -11,17 +11,17 @@ export const Viewport = ({
     vpHeight, 
     handlePreviewEnter, 
     handlePreviewExit, 
-    primaryArticleRef, 
-    startRef, 
+    primaryRef, 
+    topRef, 
     viewportRef}) => {
-    const endRef = useRef(null)
+    const bottomRef = useRef(null)
     // adjust scroll based on component entry method
-    useAdjustScroll(viewportRef, endRef)
+    useAdjustScroll(viewportRef, bottomRef)
 
     return (
         <div ref={viewportRef} className={style.viewport}>
-            <div ref={startRef} style={{ height: '1px' }}></div>
-            <div ref={primaryArticleRef} className={style.curArt} style={{minHeight: artHeight}}>
+            <div ref={topRef} style={{ height: '1px' }}></div>
+            <div ref={primaryRef} className={style.curArt} style={{minHeight: artHeight}}>
                 <Outlet />
             </div>
             {cur !== 'timeline' &&
@@ -31,7 +31,7 @@ export const Viewport = ({
             handlePreviewEnter={handlePreviewEnter}
             handlePreviewExit={handlePreviewExit}/>
           }
-          <div ref={endRef} style={{ height: '1px' }}></div>
+          <div ref={bottomRef} style={{ height: '1px' }}></div>
         </div>
     )
 }
