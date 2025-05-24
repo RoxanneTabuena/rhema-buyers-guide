@@ -17,7 +17,6 @@ export const Viewport = ({
     const bottomRef = useRef(null)
     // adjust scroll based on component entry method
     useAdjustScroll(viewportRef, bottomRef)
-
     return (
         <div ref={viewportRef} className={style.viewport}>
             <div ref={topRef} style={{ height: '1px' }}></div>

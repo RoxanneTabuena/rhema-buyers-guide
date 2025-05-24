@@ -33,25 +33,32 @@ export const getPrevArt = (art) => {
 }
 
 // height utils
+export const returnXL = (sizeTag) => {
+    return sizeTag.includes('xl')
+}
 
 export const getLinkHeight = () => {
-    let link = document.querySelector('.link')
+    let link = document.querySelector('.xl')
     if(!link){
         return false
     }
-    return `${link.offsetHeight}px`
+    return link.offsetHeight
 }
 export const getMainHeight = () => {
     let total = window.innerHeight
+    let linkTotal = 0
     let navItems = document.querySelectorAll('.link')
-    let itemHeight = Array.from(navItems)[0].offsetHeight
-    return `${total-[[navItems.length-1]*itemHeight]}px`
+    Array.from(navItems).forEach(item=>{
+        linkTotal += item.offsetHeight
+    })
+    return total-linkTotal+getLinkHeight()
 }
 
 export const getArtHeight = () => {
-    let total = window.innerHeight
-    let navItems = document.querySelectorAll('.link')
-    let itemHeight = Array.from(navItems)[0].offsetHeight
-    return `${total-[[navItems.length+1]*itemHeight]}px`
+    return getMainHeight()-getLinkHeight()
+}
+
+export const formatHeight = (height) => {
+    return `${height}px`
 }
 
