@@ -23,11 +23,13 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
     }, [previewIsVisible]);
 
     return (
-        <div ref={previewRef} className={style.preview} style={{minHeight: height}}>
+        <div ref={previewRef} style={{minHeight: height}}>
             <NavItem art={next} heightX={style.xl}>
             <h2>{titleSequence[next]}</h2>
             </NavItem>
+            <div className={style.preview}>
             {miniRouter[next]}
+            </div>
         </div>
     )
 }
