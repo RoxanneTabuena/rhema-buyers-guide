@@ -14,7 +14,7 @@ export const titleSequence = {
     'market-research': `Market Research`,
     'proposal': `Suggested Improvements`,
     'map': `Site Map`,
-    'inventory': `Inventory Considerations`,
+    'inventory': `Inventory`,
     'themes': `Site Theme Concepts`,
     'logos' : `Logo Upgrades`,
     'graphics': `Graphic Style Options`,

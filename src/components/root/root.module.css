@@ -11,7 +11,12 @@ footer{
     position: fixed;
     bottom: 0;
 }
+/* general  color*/
+.purple{
+    color: blueviolet;
+}
 
+/* general nav items */
 .link{
     font-family: 'Titles';
     width: 100%;
@@ -26,19 +31,41 @@ footer{
 .viewport>*{
     height: 100%;
 }
-/* sizing */
-.link.xs{
-    font-size: .7rem;
+
+/* mobile */
+@media only screen and (max-width: 480px) {
+    /* mobile sizing */
+    .link.xs{
+        font-size: .7rem;
+    }
+    .link.sm{
+        font-size: .8rem;
+    }
+    .link.m{
+        font-size: .9rem;
+    }
+    .link.l{
+        font-size: 1.2rem;
+    }
+    .link.xl{
+        font-size: 1.4rem;
+    }
 }
-.link.sm{
-    font-size: 1rem;
-}
-.link.m{
-    font-size: 1.2rem;
-}
-.link.l{
-    font-size: 1.5rem;
-}
-.link.xl{
-    font-size: 1.8rem;
+/* desktop */
+@media only screen and (min-width: 481px) {
+    .link.xs{
+        font-size: .7rem;
+    }
+    .link.sm{
+        font-size: .8rem;
+    }
+    .link.m{
+        font-size: .9rem;
+    }
+    .link.l{
+        font-size: 1.5rem;
+    }
+    .link.xl{
+        font-size: 1.8rem;
+    }
 }

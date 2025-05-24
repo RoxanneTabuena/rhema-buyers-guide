@@ -78,7 +78,10 @@ export const Root = () => {
                 <Header arts={getHeadArts(curArt)}/>
             </header>
             <main style={{height: vpHeight}}>
+            <div className={style.purple}>
+
             <NavItem art={curArt} heightX={style.xl}/>
+            </div>
             <Viewport
                 cur={curArt} 
                 vpHeight={vpHeight} 
