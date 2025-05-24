@@ -5,7 +5,7 @@
 }
 .map>iframe{
     border:none;
-    height: fit-content;
+    height: 550px;
     min-width: 100vw;
     height: 590px;
     background-color: white;

@@ -1,4 +1,7 @@
 /* global layout */
+body{
+    overflow: hidden;
+}
 .body{
     color: white;
     height: 100%;
@@ -37,13 +40,13 @@ footer{
 @media only screen and (max-width: 480px) {
     /* mobile sizing */
     .link.xs{
-        font-size: .2rem;
+        font-size: .1rem;
     }
     .link.sm{
-        font-size: .3rem;
+        font-size: .2rem;
     }
     .link.m{
-        font-size: .4rem;
+        font-size: .3rem;
     }
     .link.l{
         font-size: 1rem;
