@@ -1,4 +1,4 @@
-/* general layout */
+/* global layout */
 .body{
     color: white;
     height: 100%;
@@ -11,35 +11,36 @@ footer{
     position: fixed;
     bottom: 0;
 }
-/* general  color*/
-.purple{
-    color: blueviolet;
-}
 
-/* general nav items */
-.link{
-    font-family: 'Titles';
-    width: 100%;
-}
-/* viewport layout */
 .viewport {
     height: 100%;
     overflow: scroll;
     transition: 'height 1s ease-in-out'
 }
 
-.viewport>*{
-    height: 100%;
+.curArt, .preview {
+    height: fit-content;
+    text-align: center;
+}
+/* global  color*/
+.purple{
+    color: blueviolet;
+}
+
+/* global nav items */
+.link{
+    font-family: 'Titles';
+    width: 100%;
 }
 
 /* mobile */
 @media only screen and (max-width: 480px) {
     /* mobile sizing */
     .link.xs{
-        font-size: .7rem;
+        font-size: .5rem;
     }
     .link.sm{
-        font-size: .8rem;
+        font-size: .7rem;
     }
     .link.m{
         font-size: .9rem;
@@ -48,7 +49,7 @@ footer{
         font-size: 1.2rem;
     }
     .link.xl{
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 }
 /* desktop */
