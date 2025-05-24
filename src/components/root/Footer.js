@@ -3,9 +3,20 @@ import style from './root.module.css'
 
 export const Footer = ({arts}) => {
     const footerLinks =  arts.map((art, i)=>{
-        let heightX = style.sm
-        if(i === 0){
-            heightX = style.m
+        let heightX
+        switch(i){
+            case 0:
+                heightX = style.l
+                break;
+            case 1:
+                heightX = style.m
+                break;
+            case 2:
+                heightX = style.sm
+                break;
+            default:
+                heightX = style.xs
+                break;
         }
         return <NavItem key={art} art={art} heightX={heightX}/>
     })

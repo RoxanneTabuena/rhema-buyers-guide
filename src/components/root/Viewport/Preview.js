@@ -24,7 +24,7 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
     const t = (
 
         <div ref={previewRef} className={style.preview} style={{minHeight: height}}>
-            <NavItem art={next} heightX={style.l}>
+            <NavItem art={next} heightX={style.xl}>
             <h2>{titleSequence[next]}</h2>
             </NavItem>
             {miniRouter[next]}
