@@ -8,8 +8,8 @@ import {
         getHeadArts, 
         getFootArts, 
         getArtFromPath, 
-        getMainHeight, 
-        getArtHeight,
+        getVPHeight, 
+        getMinArtHeight,
         formatHeight,
        } from "../utils";
 import { NavItem } from "./NavItem";
@@ -62,8 +62,8 @@ export const Root = () => {
     }, [topIsVisible, curArt]);
     // set height according to links
     useEffect(()=>{
-        setVPHeight(formatHeight(getMainHeight()))
-        setArtHeight(formatHeight(getArtHeight()))
+        setVPHeight(formatHeight(getVPHeight()))
+        setArtHeight(formatHeight(getMinArtHeight()))
     },[footer])
     // update footer according to elements visible in the viewport
     const handlePreviewEnter = () => {

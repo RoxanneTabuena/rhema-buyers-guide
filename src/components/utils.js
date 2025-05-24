@@ -44,7 +44,7 @@ export const getLinkHeight = () => {
     }
     return link.offsetHeight
 }
-export const getMainHeight = () => {
+export const getVPHeight = () => {
     let total = window.innerHeight
     let linkTotal = 0
     let navItems = document.querySelectorAll('.link')
@@ -54,8 +54,8 @@ export const getMainHeight = () => {
     return total-linkTotal+getLinkHeight()
 }
 
-export const getArtHeight = () => {
-    return getMainHeight()-getLinkHeight()
+export const getMinArtHeight = () => {
+    return getVPHeight()+getLinkHeight()
 }
 
 export const formatHeight = (height) => {
