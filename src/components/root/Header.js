@@ -2,7 +2,6 @@ import { NavItem } from './NavItem'
 import style from './root.module.css'
 
 export const Header = ({arts}) => {
-    const lastIndex = arts.length-1
     const headerLinks =  arts.reverse().map((art, i)=>{
         let heightX
         switch(i){
