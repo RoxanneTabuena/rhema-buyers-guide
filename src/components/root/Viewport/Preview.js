@@ -8,7 +8,7 @@ import style from '../root.module.css'
 
 export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) => {
     const next = getNextArt(cur)
-    const linkHeight = !getLinkHeight() ? '5px' : formatHeight(getLinkHeight())
+    const linkHeight = !getLinkHeight() ? '5px' : formatHeight(getLinkHeight()*2)
     const [previewRef, previewIsVisible] = useVisibility({
       threshold: .01,
       rootMargin: linkHeight

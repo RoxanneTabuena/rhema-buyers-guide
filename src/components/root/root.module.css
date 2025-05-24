@@ -28,17 +28,17 @@ footer{
 }
 /* sizing */
 .link.xs{
-    font-size: .8rem;
+    font-size: .7rem;
 }
 .link.sm{
-    font-size: .9rem;
-}
-.link.m{
     font-size: 1rem;
 }
+.link.m{
+    font-size: 1.2rem;
+}
 .link.l{
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 .link.xl{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
