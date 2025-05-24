@@ -17,9 +17,8 @@ export const useNavThrottle = (delay) => {
 
   const handleAdvance = () =>
     throttle(() => {
-      navigate(`/${getNextArt(curArt)}`, {
-        state: { preserveScroll: false },
-      });
+      navigate(`/${getNextArt(curArt)}`, 
+      {state: { preserveScroll: false },});
     });
 
   const handleRetreat = () =>
@@ -27,9 +26,8 @@ export const useNavThrottle = (delay) => {
       if (!curArt) return;
       const prev = getPrevArt(curArt);
       if(!prev && curArt !== 'mission') return;
-      navigate(`/${prev}`, {
-        state: { preserveScroll: prev !== 'maintenance' },
-      });
+      navigate(`/${prev}`, 
+        {state: { preserveScroll: prev !== 'maintenance' },});
 
     });
 
