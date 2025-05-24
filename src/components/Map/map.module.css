@@ -1,0 +1,12 @@
+.map{
+    width: 100%;
+    margin: auto;
+    min-height: fit-content;
+}
+.map>iframe{
+    border:none;
+    height: fit-content;
+    min-width: 100vw;
+    min-height: 600px;
+    background-color: white;
+}
