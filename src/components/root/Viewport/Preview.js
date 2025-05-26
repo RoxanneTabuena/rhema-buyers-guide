@@ -11,9 +11,11 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
     const [previewLoaded, setPreviewLoaded] = useState( false)
     const next = getNextArt(cur)
     const [upperRef, upperIsVisible] = useVisibility({
+      root: document.querySelector('main'),
       threshold: 1,
     });
     const [lowerRef, lowerIsVisible] = useVisibility({
+      root: document.querySelector('main'),
       threshold: 1,
     });
 
@@ -32,6 +34,8 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
           setHideLink(false)
         }else if(lowerIsVisible && hideLink){
           setHideLink(false)
+          handlePreviewEnter()
+          setPreviewLoaded(true)
         }
       }
     }, [upperIsVisible, lowerIsVisible])
