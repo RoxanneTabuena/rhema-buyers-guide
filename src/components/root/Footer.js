@@ -6,12 +6,15 @@ export const Footer = ({arts}) => {
         let heightX
         switch(i){
             case 0:
-                heightX = style.l
+                heightX = style.xl
                 break;
             case 1:
-                heightX = style.m
+                heightX = style.l
                 break;
             case 2:
+                heightX = style.m
+                break;
+            case 3:
                 heightX = style.sm
                 break;
             default:
