@@ -8,5 +8,7 @@
     height: 550px;
     min-width: 100vw;
     height: 590px;
-    background-color: white;
+    background-color: black;
+    overflow: hidden;
+
 }
