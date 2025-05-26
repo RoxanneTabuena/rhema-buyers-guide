@@ -17,7 +17,6 @@ createBrowserRouter( createRoutesFromElements(
         <Route
           index
           element={<Article art={'intro'}
-          state={{preserveScroll: false}}
           />}
         />
         <Route

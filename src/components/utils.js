@@ -46,12 +46,9 @@ export const getLinkHeight = () => {
 }
 export const getVPHeight = () => {
     let total = window.innerHeight
-    let linkTotal = 0
-    let navItems = document.querySelectorAll('.link')
-    Array.from(navItems).forEach(item=>{
-        linkTotal += item.offsetHeight
-    })
-    return total-linkTotal+getLinkHeight()
+    let footer = document.querySelector('footer').offsetHeight
+    let header = document.querySelector('header').offsetHeight
+    return total-footer-header
 }
 
 export const getMinArtHeight = () => {
