@@ -60,16 +60,15 @@ export const Root = () => {
 
         lastScrollY.current = currentY;
     }, [topIsVisible, curArt]);
-    // set height according to links
-    useEffect(()=>{
-        setVPHeight(formatHeight(getVPHeight()))
-        setArtHeight(formatHeight(getMinArtHeight()))
-    },[footer])
     // update footer according to elements visible in the viewport
     const handlePreviewEnter = () => {
         setFooter(footer.slice(1))
+        setVPHeight(formatHeight(getVPHeight()))
+        setArtHeight(formatHeight(getMinArtHeight()))
     }
     const handlePreviewExit = () => {
+        setVPHeight(formatHeight(getVPHeight()))
+        setArtHeight(formatHeight(getMinArtHeight()))
         setFooter(getFootArts(curArt))
     }
     return (
