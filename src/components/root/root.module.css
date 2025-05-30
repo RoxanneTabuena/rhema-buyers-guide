@@ -27,6 +27,7 @@ footer{
 .curArt, .preview {
     height: fit-content;
     text-align: center;
+    max-width: 90%;
 }
 
 .hidden{
