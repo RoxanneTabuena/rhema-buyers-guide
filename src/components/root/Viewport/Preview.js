@@ -40,7 +40,7 @@ export const Preview = ({cur, height, handlePreviewEnter, handlePreviewExit}) =>
       }
     }, [upperIsVisible, lowerIsVisible])
     return (
-        <div style={{minHeight: height}}>
+        <div className={style.previewContainer} style={{minHeight: height}}>
                 <h2 className={style.hidden}>turkey</h2>
             <div ref={upperRef} style={{ height: '1px' }} id="previewTitle"></div>
               <NavItem art={next} heightX={style.xl} hideLink={hideLink}>
