@@ -24,15 +24,15 @@ export const Competitor = ({name, info}) => {
                     <img src={src} alt={`${name} logo`}>
                     </img>
                 </a>
-                <div className={style.content}>
+                <div>
                     <section>
-                        <h3 className={style.sect_head}>What We Can Learn From Them</h3>
-                        <div className={style.sect_cont}>
+                        <h3 >What We Can Learn From Them</h3>
+                        <div>
                             {mapPoints(good)}
                         </div>
                     </section>
                     <section>
-                        <h3 className={style.sect_head}>How We Can Beat Them</h3>
+                        <h3>How We Can Beat Them</h3>
                         {mapPoints(bad)}
                     </section>
                 </div>
