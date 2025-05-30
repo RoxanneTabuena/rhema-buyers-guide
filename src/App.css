@@ -78,10 +78,6 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
 
 /* general typography */
 @font-face {
@@ -95,7 +91,7 @@ textarea:not([rows]) {
 }
 
 .title {
-  font-family: 'Titles';
+  font-family: tim;
 }
 
 .highlight {
