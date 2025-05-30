@@ -67,9 +67,9 @@ export const Root = () => {
         setArtHeight(formatHeight(getMinArtHeight()))
     }
     const handlePreviewExit = () => {
+        setFooter(getFootArts(curArt))
         setVPHeight(formatHeight(getVPHeight()))
         setArtHeight(formatHeight(getMinArtHeight()))
-        setFooter(getFootArts(curArt))
     }
     return (
         <div className={style.body} onWheel={handleScroll}>
