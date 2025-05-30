@@ -9,37 +9,18 @@ h4{
     font-size: 20px;
 
 }
-.research {
-    position: relative;
-}
 
-.research>div{
-    position: relative;
-}
-
-.competitor{
+.pointContainer{
+    margin-left: 2rem;
     text-align: left;
-    max-width: 80%;
-    position:relative;
-    margin:auto;
 }
-
-.comp_head{
-    max-height: 220px;
-    top:0;
-    position: sticky;
-    text-align: center;
-    background-color: black;
-    z-index: 2;
-    width: 100%;
-    margin: auto;
-}
-.content{
-    position: absolute;
-    overflow-y: scroll;
-    z-index: 1;
-}
-
-.titles{
+.title{
     font-family: 'Titles';
+}
+.titleContainer{
+    display: flex;
+    align-items: baseline;
+}
+.point{
+    margin-left: 2rem;
 }
