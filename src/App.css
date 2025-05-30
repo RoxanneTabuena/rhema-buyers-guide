@@ -78,6 +78,12 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
+/* remove default styling from buttons */
+button {
+  background-color: inherit;
+  border: none;
+}
+
 
 /* general typography */
 @font-face {
