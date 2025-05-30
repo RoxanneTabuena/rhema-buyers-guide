@@ -45,14 +45,14 @@ export const getLinkHeight = () => {
     return link.offsetHeight
 }
 export const getVPHeight = () => {
+    return getMinArtHeight()+getLinkHeight()
+}
+
+export const getMinArtHeight = () => {
     let total = window.innerHeight
     let footer = document.querySelector('footer').offsetHeight
     let header = document.querySelector('header').offsetHeight
     return total-footer-header
-}
-
-export const getMinArtHeight = () => {
-    return getVPHeight()+getLinkHeight()
 }
 
 export const formatHeight = (height) => {
