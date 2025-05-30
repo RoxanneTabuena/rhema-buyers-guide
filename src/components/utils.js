@@ -59,3 +59,33 @@ export const formatHeight = (height) => {
     return `${height}px`
 }
 
+export const getHeadHeight = () => {
+    return document.querySelector('.comp_head').offsetHeight
+    
+
+}
+
+export const getScrollHeight = () => {
+    return getArtHeight()-getHeadHeight()
+}
+
+export const getArtHeight = () => {
+    return getVPHeight()- getLinkHeight()*2
+}
+// content mapping
+export const keyFromStr = (str, i) => {
+    return `${str.split(' ')[0]}-${i}`
+}
+
+export const mapPoints=(infoArr, titleStyle)=>{
+    return infoArr.map((point, i)=>{
+        let txt = point.split(':')
+        return (
+            <div key={keyFromStr(txt[0], i)}>
+                <p className={titleStyle}>{txt[0]}</p>
+                <p>{txt[1]}</p>
+            </div>
+        )
+    })
+}
+
