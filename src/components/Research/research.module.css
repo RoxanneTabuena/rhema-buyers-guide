@@ -1,18 +1,25 @@
-h3,h4{
+
+h3{
     font-family: 'Titles';
     color: blueviolet;
-}
-h3{
     font-size: 22px;
 }
 h4{
+    font-family: 'Titles';
     font-size: 20px;
-
+    
+}
+.competitor {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    margin-bottom: 3rem;
 }
 
 .pointContainer{
     margin-left: 2rem;
-    text-align: left;
 }
 .title{
     font-family: 'Titles';

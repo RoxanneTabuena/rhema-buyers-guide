@@ -15,15 +15,18 @@ export const Competitor = ({name, info}) => {
         })
     }
     return (
-            <article className={style.competitor} aria-label={`market report on ${name}`}>
-                <a className={`${style.comp_head} comp_head`} 
-                    href={href} 
-                    aria-label={`link to ${name}`} 
-                    target="_blank" 
-                    rel="noopener noreferrer">
-                    <img src={src} alt={`${name} logo`}>
-                    </img>
-                </a>
+            <article className={style.competitor} aria-label={`Case Report on ${name}`}>
+                <div>
+                    <h4>Case Study:</h4>
+                    <a 
+                        href={href} 
+                        aria-label={`link to ${name}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <img src={src} alt={`${name} logo`}>
+                        </img>
+                    </a>
+                </div>
                 <div>
                     <section>
                         <h3 >What We Can Learn From Them</h3>
