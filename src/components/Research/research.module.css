@@ -11,11 +11,12 @@ h4{
 }
 .competitor {
     text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 50vh;
+    min-height: 50vh;
     margin-bottom: 3rem;
+}
+
+.content {
+    margin-top: 3rem;
 }
 
 .pointContainer{

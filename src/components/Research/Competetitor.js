@@ -27,7 +27,7 @@ export const Competitor = ({name, info}) => {
                         </img>
                     </a>
                 </div>
-                <div>
+                <div className={style.content}>
                     <section>
                         <h3 >What We Can Learn From Them</h3>
                         <div>
